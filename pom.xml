@@ -29,13 +29,13 @@ THE SOFTWARE.
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
     <version>1.415</version>
-    <relativePath/>
+    <relativePath />
   </parent>
 
   <groupId>com.cisco.step.jenkins.plugins</groupId>
   <artifactId>people-redirector</artifactId>
   <packaging>hpi</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <name>People Redirector Plugin</name>
   <description>Integrates "people" pages with an external user management system.</description>
   <url>http://wiki.jenkins-ci.org/display/JENKINS/People+Redirector+Plugin</url>
