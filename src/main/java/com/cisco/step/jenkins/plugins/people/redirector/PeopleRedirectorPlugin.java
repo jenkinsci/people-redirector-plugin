@@ -78,14 +78,15 @@ public class PeopleRedirectorPlugin extends Plugin {
 				
 				if ( !disabled && redirectTarget != null && redirectTarget.length() > 0 && uri.startsWith("/user/")){
 					String username = uri.substring(6);
-					while (username.endsWith("/")) username = username.substring(0,username.length()-1);
-					HttpServletResponse hrsp = (HttpServletResponse)rsp;
-					hrsp.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
-					
-					String newUri = redirectTarget.replace("${user}",username);
-					LOG.fine("redirecting to "+newUri);
-					hrsp.addHeader("Location",newUri);
-					return;
+					if (username.indexOf('/') < 0){
+						HttpServletResponse hrsp = (HttpServletResponse)rsp;
+						hrsp.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
+						
+						String newUri = redirectTarget.replace("${user}",username);
+						LOG.fine("redirecting to "+newUri);
+						hrsp.addHeader("Location",newUri);
+						return;
+					}
 				}
 				
 				chain.doFilter(req, rsp);
