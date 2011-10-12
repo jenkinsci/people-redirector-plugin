@@ -27,10 +27,10 @@ THE SOFTWARE.
 <!-- TODO 6: for some reason the "convention over configuration" online help approach does not work. I have to give explicit help references instead. -->
 
     <f:entry field="redirectTarget" title="${%Redirect Target}" help="/plugin/people-redirector/help-redirectTarget.html">
-      <f:textbox name="redirectTarget" value="${it.redirectTarget}" />
+      <f:textbox name="redirectTarget" value="${it.getRedirectTarget()}" />
     </f:entry>
-    <f:entry field="disabled" help="/plugin/people-redirector/help-disabled.html">
-      <f:checkbox/>
+    <f:entry title="" help="/plugin/people-redirector/help-disabled.html">
+      <f:checkbox name="disabled" checked="${it.isDisabled()}" />
       <label class="attach-previous">${%Disable redirection}</label>
     </f:entry>
   </f:section>

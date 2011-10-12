@@ -49,20 +49,12 @@ public class PeopleRedirectorPlugin extends Plugin {
 	private String redirectTarget;
 	private boolean disabled;
 	
-	public void setRedirectTarget(String redirectTarget) {
-		this.redirectTarget = redirectTarget;
-	}
-	
 	public String getRedirectTarget() {
 		return redirectTarget;
 	}
 
 	public boolean isDisabled() {
 		return disabled;
-	}
-
-	public void setDisabled(boolean disabled) {
-		this.disabled = disabled;
 	}
 
 	@Override
