@@ -30,7 +30,7 @@ THE SOFTWARE.
       <f:textbox name="redirectTarget" value="${it.getRedirectTarget()}" />
     </f:entry>
     <f:entry title="" help="/plugin/people-redirector/help-disabled.html">
-      <f:checkbox name="disabled" checked="${it.isDisabled()}" />
+      <f:checkbox name="redirectDisabled" checked="${it.isDisabled()}" />
       <label class="attach-previous">${%Disable redirection}</label>
     </f:entry>
   </f:section>

@@ -96,7 +96,7 @@ public class PeopleRedirectorPlugin extends Plugin {
 	@Override
 	public void configure(StaplerRequest req, JSONObject formData) throws IOException, ServletException, FormException{
 		redirectTarget = formData.getString("redirectTarget");
-		disabled = formData.getBoolean("disabled");
+		disabled = formData.getBoolean("redirectDisabled");
 		save();
 	}
 }
