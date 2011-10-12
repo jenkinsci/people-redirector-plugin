@@ -70,6 +70,7 @@ public class PeopleRedirectorPlugin extends Plugin {
 				
 				if ( !disabled && redirectTarget != null && redirectTarget.length() > 0 && uri.startsWith("/user/")){
 					String username = uri.substring(6);
+					if (username.endsWith("/")) username = username.substring(0,username.length()-1);
 					if (username.indexOf('/') < 0){
 						HttpServletResponse hrsp = (HttpServletResponse)rsp;
 						hrsp.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
