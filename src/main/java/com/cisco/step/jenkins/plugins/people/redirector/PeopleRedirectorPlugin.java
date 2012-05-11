@@ -66,19 +66,25 @@ public class PeopleRedirectorPlugin extends Plugin {
 			}
 
 			public void doFilter(ServletRequest req, ServletResponse rsp, FilterChain chain) throws IOException, ServletException{
-				String uri = ((HttpServletRequest)req).getRequestURI();
-				
-				if ( !disabled && redirectTarget != null && redirectTarget.length() > 0 && uri.startsWith("/user/")){
-					String username = uri.substring(6);
-					if (username.endsWith("/")) username = username.substring(0,username.length()-1);
-					if (username.indexOf('/') < 0){
-						HttpServletResponse hrsp = (HttpServletResponse)rsp;
-						hrsp.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
-						
-						String newUri = redirectTarget.replace("${user}",username);
-						LOG.fine("redirecting to "+newUri);
-						hrsp.addHeader("Location",newUri);
-						return;
+				if ( !disabled && redirectTarget != null && redirectTarget.length() > 0){
+					HttpServletRequest hreq = (HttpServletRequest)req;
+					String uri = hreq.getRequestURI();
+					
+					String ctxp = hreq.getContextPath();
+					int p = !uri.startsWith(ctxp)? 0 : ctxp.length();
+					
+					if (uri.startsWith("/user/",p)){
+						String username = uri.substring(p+6);
+						if (username.endsWith("/")) username = username.substring(0,username.length()-1);
+						if (username.indexOf('/') < 0){
+							HttpServletResponse hrsp = (HttpServletResponse)rsp;
+							hrsp.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
+							
+							String newUri = redirectTarget.replace("${user}",username);
+							LOG.fine("redirecting to "+newUri);
+							hrsp.addHeader("Location",newUri);
+							return;
+						}
 					}
 				}
 				
