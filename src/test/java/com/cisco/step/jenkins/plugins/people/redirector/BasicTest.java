@@ -25,11 +25,11 @@ package com.cisco.step.jenkins.plugins.people.redirector;
 
 import org.jvnet.hudson.test.HudsonTestCase;
 
-import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
-import com.gargoylesoftware.htmlunit.html.HtmlButton;
-import com.gargoylesoftware.htmlunit.html.HtmlForm;
-import com.gargoylesoftware.htmlunit.html.HtmlInput;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import org.htmlunit.FailingHttpStatusCodeException;
+import org.htmlunit.html.HtmlButton;
+import org.htmlunit.html.HtmlForm;
+import org.htmlunit.html.HtmlInput;
+import org.htmlunit.html.HtmlPage;
 
 public class BasicTest extends HudsonTestCase {
 	private final static String REDIRECTION_PREFIX = "some/where/else";
@@ -51,7 +51,7 @@ public class BasicTest extends HudsonTestCase {
 	private void setRedirection(WebClient wc, boolean enable) throws Exception{
 		HtmlPage configPage = wc.goTo("configure");
 		HtmlForm form = configPage.getFormByName("config");
-		form.getInputByName("redirectTarget").setValueAttribute(wc.getContextPath()+REDIRECTION_PREFIX+"/${user}");
+		form.getInputByName("redirectTarget").setValue(wc.getContextPath()+REDIRECTION_PREFIX+"/${user}");
 		form.<HtmlInput>getInputByName("redirectDisabled").setChecked(!enable);
 		form.submit((HtmlButton)last(form.getHtmlElementsByTagName("button")));
 	}
